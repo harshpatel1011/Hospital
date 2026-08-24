@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}All Appointments - Apollo{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="header-text">
+        <h1>Appointments</h1>
+        <p>Manage all hospital appointments</p>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Contact</th>
+                <th>Doctor</th>
+                <th>Date & Time</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in appointments %}
+            <tr>
+                <td>{{ appt.patient_name }}</td>
+                <td>
+                    <div style="font-size: 0.8rem;">
+                        <i class="fas fa-user"></i> {{ appt.age }} / {{ appt.gender }}<br>
+                        <i class="fas fa-phone"></i> {{ appt.phone }}<br>
+                        <i class="fas fa-map-marker-alt"></i> {{ appt.address }}
+                    </div>
+                </td>
+                <td>{% if appt.doctor %}Dr. {{ appt.doctor.username }}{% else %}Any{% endif %}</td>
+                <td>{{ appt.date }}<br><span style="color: var(--text-muted); font-size: 0.85rem;">{{ appt.time }}</span></td>
+                <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ appt.reason }}</td>
+                <td>
+                    <span style="padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; background-color: {% if appt.status == 'Pending' %}var(--warning){% elif appt.status == 'Completed' %}var(--success){% else %}var(--danger){% endif %}; color: white;">
+                        {{ appt.status }}
+                    </span>
+                </td>
+                <td>
+                    {% if appt.status == 'Rejected' %}
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">Cannot be modified</span>
+                    {% else %}
+                    <form method="POST" style="display: flex; gap: 0.5rem;">
+                        {% csrf_token %}
+                        <input type="hidden" name="appointment_id" value="{{ appt.id }}">
+                        <select name="status" class="form-input" style="padding: 0.25rem; font-size: 0.8rem; width: auto; min-width: 100px;">
+                            <option value="Pending" {% if appt.status == 'Pending' %}selected{% endif %}>Pending</option>
+                            <option value="Completed" {% if appt.status == 'Completed' %}selected{% endif %}>Completed</option>
+                            <option value="Rejected" {% if appt.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                        </select>
+                        <button type="submit" class="btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Update</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" style="text-align: center; color: var(--text-muted);">No appointments found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Add Patient - Apollo{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="header-text">
+        <h1>Add New Patient</h1>
+        <p>Register a new patient in the system</p>
+    </div>
+</div>
+
+<div class="auth-card" style="margin: 0; max-width: 800px;">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-grid">
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Full Name</label>
+                <input class="form-input" type="text" name="name" placeholder="John Doe" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Age</label>
+                <input class="form-input" type="number" name="age" min="0" max="150" placeholder="e.g. 35" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Gender</label>
+                <select name="gender" class="form-input" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input class="form-input" type="text" name="phone" placeholder="+1 (555) 000-0000" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Assigned Doctor</label>
+                <select name="doctor_id" class="form-input" required>
+                    <option value="" disabled selected>Select a Doctor</option>
+                    {% for doc in doctors %}
+                    <option value="{{ doc.id }}">Dr. {{ doc.username }} - {{ doc.specialization }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Address</label>
+                <textarea class="form-input" name="address" rows="3" placeholder="Full residential address..." required></textarea>
+            </div>
+        </div>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn-primary">Add Patient</button>
+            <a href="{% url 'admin_patients' %}" class="btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

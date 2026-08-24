@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apollo - Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="page-header">
+                <div class="header-text">
+                    <h1>Apollo</h1>
+                    <p>Admin Login</p>
+                </div>
+            </div>
+
+            {% if messages %}
+                <div style="margin-bottom: 1rem;">
+                    {% for message in messages %}
+                        <div style="padding: 0.75rem; border-radius: var(--border-radius-sm); margin-bottom: 0.5rem; background: {% if message.tags == 'error' %}#fee2e2{% else %}#d1e7dd{% endif %}; color: {% if message.tags == 'error' %}var(--danger){% else %}#0f5132{% endif %}; border: 1px solid {% if message.tags == 'error' %}#fca5a5{% else %}#badbcc{% endif %};">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-grid" style="grid-template-columns: 1fr;">
+                    <div class="form-group">
+                        <label class="form-label" for="username">Username</label>
+                        <input class="form-input" type="text" id="username" name="username" placeholder="Admin username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="password">Password</label>
+                        <input class="form-input" type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary">Log In</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p style="margin-top: 0.5rem;"><a href="{% url 'home' %}">← Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

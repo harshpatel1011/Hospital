@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Edit Staff - Apollo{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="header-text">
+        <h1>Edit Staff: {{ staff_member.name }}</h1>
+        <p>Update staff member details</p>
+    </div>
+</div>
+
+<div class="auth-card" style="margin: 0; max-width: 800px;">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-grid">
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Full Name</label>
+                <input class="form-input" type="text" name="name" value="{{ staff_member.name }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Role Title</label>
+                <input class="form-input" type="text" name="role_title" value="{{ staff_member.role_title }}" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input class="form-input" type="text" name="phone" value="{{ staff_member.phone }}" required>
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Email</label>
+                <input class="form-input" type="email" name="email" value="{{ staff_member.email }}" required>
+            </div>
+        </div>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn-primary">Save Changes</button>
+            <a href="{% url 'admin_staff' %}" class="btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

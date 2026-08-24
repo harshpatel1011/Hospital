@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Apollo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container" style="padding: 4rem 2rem;">
+        <div class="auth-card" style="background: transparent; border: none; box-shadow: none; max-width: 100%; width: 100%;">
+            <div class="page-header">
+                <div class="header-text">
+                    <h1>Book Appointment</h1>
+                    <p>Schedule a visit with our specialists</p>
+                </div>
+            </div>
+
+            {% if messages %}
+                <div style="margin-bottom: 1rem;">
+                    {% for message in messages %}
+                        <div style="padding: 0.75rem; border-radius: var(--border-radius-sm); margin-bottom: 0.5rem; background: {% if message.tags == 'error' %}#fee2e2{% else %}#d1e7dd{% endif %}; color: {% if message.tags == 'error' %}var(--danger){% else %}#0f5132{% endif %}; border: 1px solid {% if message.tags == 'error' %}#fca5a5{% else %}#badbcc{% endif %};">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-grid grid-4">
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label class="form-label">Full Name</label>
+                        <input class="form-input" type="text" name="patient_name" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label class="form-label">Phone Number</label>
+                        <input class="form-input" type="text" name="phone" placeholder="+1 (555) 000-0000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <select class="form-input" name="gender" required style="appearance: auto; background-color: white;">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Age</label>
+                        <input class="form-input" type="number" name="age" placeholder="e.g. 35" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Date</label>
+                        <input class="form-input" type="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Time</label>
+                        <input class="form-input" type="time" name="time" required>
+                    </div>
+
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label class="form-label">Address</label>
+                        <textarea class="form-input" name="address" rows="4" placeholder="123 Main St, City, Country" required></textarea>
+                    </div>
+
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label class="form-label">Reason for Visit</label>
+                        <textarea class="form-input" name="reason" rows="4" placeholder="Briefly describe the reason for your visit..." required></textarea>
+                    </div>
+
+                    <div class="form-group"">
+                        <label class="form-label">Preferred Doctor</label>
+                        <select class="form-input" name="doctor" style="appearance: auto; background-color: white;">
+                            <option value="">Select a Doctor</option>
+                            {% for doc in doctors %}
+                                <option value="{{ doc.id }}">Dr. {{ doc.username }} ({{ doc.specialization }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary" style="margin-top: 1rem; width: 100%; justify-content: center;">Confirm Appointment</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p style="margin-top: 0.5rem;"><a href="{% url 'home' %}">← Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

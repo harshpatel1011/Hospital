@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %}Doctor Dashboard - Apollo{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="header-text">
+        <h1>Overview</h1>
+        <p>Your Recent Appointments and Stats</p>
+    </div>
+</div>
+
+{% if unassigned_appointments %}
+<div class="form-section-title">Available Unassigned Appointments</div>
+<div class="table-responsive" style="margin-bottom: 3rem;">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Age/Gender</th>
+                <th>Date & Time</th>
+                <th>Reason</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in unassigned_appointments %}
+            <tr>
+                <td>{{ appt.patient_name }}</td>
+                <td>{{ appt.age }} / {{ appt.gender }}</td>
+                <td>{{ appt.date }}<br><span style="color: var(--text-muted); font-size: 0.85rem;">{{ appt.time }}</span></td>
+                <td>{{ appt.reason }}</td>
+                <td>
+                    <form method="POST" action="{% url 'doctor_accept_appointment' appt.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Accept</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+<div class="form-section-title">Your Recent Appointments</div>
+
+<div class="table-responsive">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in appointments %}
+            <tr>
+                <td>{{ appt.patient_name }}</td>
+                <td>{{ appt.date }}</td>
+                <td>{{ appt.time }}</td>
+                <td>{{ appt.reason }}</td>
+                <td>
+                    <span style="padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; background-color: {% if appt.status == 'Pending' %}var(--warning){% elif appt.status == 'Completed' %}var(--success){% else %}var(--danger){% endif %}; color: white;">
+                        {{ appt.status }}
+                    </span>
+                </td>
+                <td>
+                    {% if appt.status == 'Pending' %}
+                    <div style="display: flex; gap: 0.5rem;">
+                        <form method="POST" action="{% url 'doctor_complete_appointment' appt.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Complete</button>
+                        </form>
+                        <form method="POST" action="{% url 'doctor_reject_appointment' appt.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Reject</button>
+                        </form>
+                    </div>
+                    {% elif appt.status == 'Rejected' %}
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">Rejected</span>
+                    {% elif appt.status == 'Completed' %}
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">Completed</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center; color: var(--text-muted);">No recent appointments.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

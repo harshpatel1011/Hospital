@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard - Apollo{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="header-text">
+        <h1>Overview</h1>
+        <p>Hospital Management System Statistics</p>
+    </div>
+</div>
+
+<div class="student-grid" style="grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+    <div class="student-card" style="align-items: center; text-align: center;">
+        <h3 style="font-size: 1.1rem; color: var(--text-secondary); text-transform: uppercase;">Total Doctors</h3>
+        <p style="font-size: 3rem; font-family: 'Playfair Display', serif; color: var(--primary);">{{ doctor_count }}</p>
+    </div>
+    
+    <div class="student-card" style="align-items: center; text-align: center;">
+        <h3 style="font-size: 1.1rem; color: var(--text-secondary); text-transform: uppercase;">Total Patients</h3>
+        <p style="font-size: 3rem; font-family: 'Playfair Display', serif; color: var(--primary);">{{ patient_count }}</p>
+    </div>
+    
+    <div class="student-card" style="align-items: center; text-align: center;">
+        <h3 style="font-size: 1.1rem; color: var(--text-secondary); text-transform: uppercase;">Appointments</h3>
+        <p style="font-size: 3rem; font-family: 'Playfair Display', serif; color: var(--primary);">{{ appointment_count }}</p>
+    </div>
+    
+    <div class="student-card" style="align-items: center; text-align: center;">
+        <h3 style="font-size: 1.1rem; color: var(--text-secondary); text-transform: uppercase;">Staff Members</h3>
+        <p style="font-size: 3rem; font-family: 'Playfair Display', serif; color: var(--primary);">{{ staff_count }}</p>
+    </div>
+</div>
+
+<div class="form-section-title" style="margin-top: 3rem;">Quick Actions</div>
+<div style="display: flex; gap: 1rem;">
+    <a href="{% url 'admin_doctors' %}" class="btn-primary">Manage Doctors</a>
+    <a href="{% url 'admin_appointments' %}" class="btn-secondary">View Appointments</a>
+    <a href="{% url 'admin_staff' %}" class="btn-secondary">Add Staff</a>
+</div>
+{% endblock %}

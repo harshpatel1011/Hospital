@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}My Patients - Apollo{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="header-text">
+        <h1>My Patients</h1>
+        <p>Manage your patients</p>
+    </div>
+    <a href="{% url 'doctor_add_patient' %}" class="btn-primary">
+        <i class="fas fa-plus"></i> Add Patient
+    </a>
+</div>
+
+<form method="GET" action="{% url 'doctor_patients' %}" class="search-form" style="margin-bottom: 2rem;">
+    <input type="text" name="q" value="{{ search_query|default:'' }}" class="search-input" placeholder="Search patients by name...">
+    <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
+</form>
+
+<div class="student-grid">
+    {% for patient in patients %}
+    <div class="student-card">
+        <div class="card-top">
+            <div class="card-info">
+                <h3>{{ patient.name }}</h3>
+                <p>Age: {{ patient.age }} | {{ patient.gender }}</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-detail">
+                <i class="fas fa-phone"></i> {{ patient.phone }}
+            </div>
+            <div class="card-detail">
+                <i class="fas fa-map-marker-alt"></i> {{ patient.address }}
+            </div>
+        </div>
+        <div class="card-actions">
+            <a href="{% url 'doctor_medical_records' patient.id %}" class="btn-secondary" style="font-size: 0.75rem; padding: 0.5rem 1rem;">Records</a>
+            <div class="action-buttons">
+                <a href="{% url 'doctor_edit_patient' patient.id %}" class="btn-icon"><i class="fas fa-edit"></i></a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p style="color: var(--text-muted); grid-column: 1 / -1; text-align: center; padding: 3rem;">No patients found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

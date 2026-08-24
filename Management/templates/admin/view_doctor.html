@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}View Doctor - Apollo{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="header-text">
+        <h1>Doctor Details</h1>
+        <p>Profile information for Dr. {{ doctor.username }}</p>
+    </div>
+    <div style="display: flex; gap: 1rem;">
+        <a href="{% url 'admin_edit_doctor' doctor.id %}" class="btn-primary">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+        <a href="{% url 'admin_doctors' %}" class="btn-secondary">Back to List</a>
+    </div>
+</div>
+
+<div class="auth-card" style="margin: 0; max-width: 800px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div>
+            <h3 style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Personal Details</h3>
+            <p style="margin-bottom: 1rem;"><strong>Name:</strong> {{ doctor.username }}</p>
+            <p style="margin-bottom: 1rem;"><strong>Email:</strong> {{ doctor.email }}</p>
+            <p style="margin-bottom: 1rem;"><strong>Phone:</strong> {{ doctor.phone }}</p>
+        </div>
+        
+        <div>
+            <h3 style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Professional Details</h3>
+            <p style="margin-bottom: 1rem;"><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+            <p style="margin-bottom: 1rem;"><strong>Status:</strong> 
+                {% if doctor.is_approved %}
+                    <span style="color: var(--success); font-weight: 600;">Approved</span>
+                {% else %}
+                    <span style="color: var(--warning); font-weight: 600;">Pending</span>
+                {% endif %}
+            </p>
+            <p style="margin-bottom: 1rem;"><strong>Joined:</strong> {{ doctor.created_at|date:"M d, Y" }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
