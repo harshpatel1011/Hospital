@@ -1,16 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Appointment - Apollo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <div class="auth-container" style="padding: 4rem 2rem;">
+{% extends 'base.html' %}
+
+{% block title %}Book Appointment - Apollo{% endblock %}
+
+{% block content %}
+<div class="auth-container" style="padding: 4rem 2rem;">
         <div class="auth-card" style="background: transparent; border: none; box-shadow: none; max-width: 100%; width: 100%;">
             <div class="page-header">
                 <div class="header-text">
@@ -96,5 +89,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

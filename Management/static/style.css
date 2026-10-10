@@ -45,7 +45,7 @@ a {
 }
 
 /* Typography for Headings */
-h1, h2, h3, h4, h5, h6, .playfair {
+h1, h2, h3 {
     font-family: 'Playfair Display', serif;
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -293,19 +293,6 @@ body {
     padding-bottom: 1rem;
 }
 
-.card-avatar {
-    width: 60px;
-    height: 60px;
-    background-color: var(--text-primary);
-    color: var(--bg-card);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: bold;
-}
-
 .card-info {
     flex: 1;
     min-width: 0;
@@ -375,10 +362,6 @@ body {
 .btn-icon:hover {
     color: var(--text-primary);
     transform: scale(1.1);
-}
-
-.btn-delete:hover {
-    color: var(--danger);
 }
 
 /* Form Layouts */
@@ -480,32 +463,6 @@ body {
     letter-spacing: 1px;
 }
 
-.detail-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.detail-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.detail-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
-    font-weight: 600;
-}
-
-.detail-value {
-    font-size: 1.05rem;
-    color: var(--text-primary);
-    font-weight: 500;
-}
-
 /* Dossier View Layout (Student Detail) */
 .dossier-layout {
     display: flex;
@@ -603,121 +560,9 @@ body {
     color: white;
 }
 
-.dossier-btn-dark {
-    color: var(--text-primary);
-    border-color: var(--border-color);
-    width: auto;
-    padding: 0.5rem 1rem;
-}
-
-.dossier-btn-dark:hover {
-    background-color: var(--text-primary);
-    color: var(--bg-main);
-}
-
-.dossier-btn-dark.danger {
-    color: var(--danger);
-    border-color: var(--danger);
-}
-
-.dossier-btn-dark.success {
-    color: var(--success);
-    border-color: var(--success);
-}
-
 /* Dossier Main Content */
-.dossier-main {
-    flex: 1;
-    padding: 3rem 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
-
-@media (max-width: 768px) {
-    .dossier-main {
-        padding: 2rem;
-    }
-}
-
-.dossier-section h3 {
-    font-size: 1.25rem;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.dossier-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-}
-
-.dossier-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.dossier-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
-    font-weight: 600;
-}
-
-.dossier-value {
-    font-size: 1.05rem;
-    color: var(--text-primary);
-}
 
 /* Bulk Delete Button */
-.btn-bulk-delete {
-    background-color: var(--bg-card);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius-sm);
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all var(--transition-fast);
-}
-
-.btn-bulk-delete:hover {
-    background-color: var(--danger);
-    color: white;
-    border-color: var(--danger);
-}
-
-.btn-bulk-delete {
-    background-color: var(--bg-card);
-    color: var(--text-primary);
-    border: 1px solid var(--text-primary);
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius-sm);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all var(--transition-fast);
-}
-
-.btn-bulk-delete:hover {
-    background-color: var(--danger);
-    color: #ffffff;
-    border-color: var(--danger);
-}
 
 /* Search Bar UI */
 .search-form {
@@ -855,20 +700,5 @@ body {
     background-color: var(--success);
     color: #ffffff;
     border-color: var(--success);
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-    display: block !important;
-    width: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: var(--text-muted);
 }
 
