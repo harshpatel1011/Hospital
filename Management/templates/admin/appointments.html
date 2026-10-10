@@ -27,40 +27,40 @@
             <tr>
                 <td>{{ appt.patient_name }}</td>
                 <td>
-                    <div style="font-size: 0.8rem;">
+                    <div  class="util-fs-08rem">
                         <i class="fas fa-user"></i> {{ appt.age }} / {{ appt.gender }}<br>
                         <i class="fas fa-phone"></i> {{ appt.phone }}<br>
                         <i class="fas fa-map-marker-alt"></i> {{ appt.address }}
                     </div>
                 </td>
                 <td>{% if appt.doctor %}Dr. {{ appt.doctor.username }}{% else %}Any{% endif %}</td>
-                <td>{{ appt.date }}<br><span style="color: var(--text-muted); font-size: 0.85rem;">{{ appt.time }}</span></td>
-                <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ appt.reason }}</td>
+                <td>{{ appt.date }}<br><span  class="util-col-vartextmuted-fs-085rem">{{ appt.time }}</span></td>
+                <td  class="util-mw-200px-ws-nowrap-ove-hidden-138">{{ appt.reason }}</td>
                 <td>
-                    <span style="padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; background-color: {% if appt.status == 'Pending' %}var(--warning){% elif appt.status == 'Completed' %}var(--success){% else %}var(--danger){% endif %}; color: white;">
+                    <span class="status-badge {% if appt.status == 'Pending' %}status-pending{% elif appt.status == 'Completed' %}status-completed{% else %}status-rejected{% endif %}">
                         {{ appt.status }}
                     </span>
                 </td>
                 <td>
                     {% if appt.status == 'Rejected' %}
-                        <span style="color: var(--text-muted); font-size: 0.85rem;">Cannot be modified</span>
+                        <span  class="util-col-vartextmuted-fs-085rem">Cannot be modified</span>
                     {% else %}
-                    <form method="POST" style="display: flex; gap: 0.5rem;">
+                    <form method="POST"  class="util-dis-flex-gap-05rem">
                         {% csrf_token %}
                         <input type="hidden" name="appointment_id" value="{{ appt.id }}">
-                        <select name="status" class="form-input" style="padding: 0.25rem; font-size: 0.8rem; width: auto; min-width: 100px;">
+                        <select name="status" class="form-input util-pad-025rem-fs-08rem-wid-auto-m373" >
                             <option value="Pending" {% if appt.status == 'Pending' %}selected{% endif %}>Pending</option>
                             <option value="Completed" {% if appt.status == 'Completed' %}selected{% endif %}>Completed</option>
                             <option value="Rejected" {% if appt.status == 'Rejected' %}selected{% endif %}>Rejected</option>
                         </select>
-                        <button type="submit" class="btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Update</button>
+                        <button type="submit" class="btn-secondary util-pad-025rem05rem-fs-075rem" >Update</button>
                     </form>
                     {% endif %}
                 </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="7" style="text-align: center; color: var(--text-muted);">No appointments found.</td>
+                <td colspan="7"  class="util-ta-center-col-vartextmuted">No appointments found.</td>
             </tr>
             {% endfor %}
         </tbody>

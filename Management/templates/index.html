@@ -4,36 +4,32 @@
 
 {% block content %}
 <div class="auth-container">
-        <div class="auth-card" style="max-width: 600px; text-align: center;">
-            <div class="page-header" style="justify-content: center; border-bottom: none;">
+        <div class="auth-card util-mw-600px-ta-center" >
+            <div class="page-header util-jc-center-bb-none" >
                 <div class="header-text">
-                    <h1 style="font-size: 3rem; margin-bottom: 1rem;">Apollo</h1>
-                    <p style="font-size: 1.2rem; color: var(--text-secondary);">Premium Healthcare Management</p>
+                    <h1  class="util-fs-3rem-mb-1rem">Apollo</h1>
+                    <p  class="util-fs-12rem-col-vartextsecondary">Premium Healthcare Management</p>
                 </div>
             </div>
 
             {% if messages %}
-                <div style="margin-bottom: 1rem;">
-                    {% for message in messages %}
-                        <div style="padding: 0.75rem; border-radius: var(--border-radius-sm); margin-bottom: 0.5rem; background: {% if message.tags == 'error' %}#fee2e2{% else %}#d1e7dd{% endif %}; color: {% if message.tags == 'error' %}var(--danger){% else %}#0f5132{% endif %}; border: 1px solid {% if message.tags == 'error' %}#fca5a5{% else %}#badbcc{% endif %};">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
+                <div  class="util-mb-1rem">
+                    {% include 'includes/messages.html' %}
                 </div>
             {% endif %}
 
-            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+            <div  class="util-dis-flex-fd-column-gap-1rem-mt-2rem">
                 {% if user %}
                     {% if user.role == 'Admin' %}
-                        <a href="{% url 'admin_dashboard' %}" class="btn-primary" style="justify-content: center;">Go to Admin Dashboard</a>
+                        <a href="{% url 'admin_dashboard' %}" class="btn-primary util-jc-center" >Go to Admin Dashboard</a>
                     {% elif user.role == 'Doctor' %}
-                        <a href="{% url 'doctor_dashboard' %}" class="btn-primary" style="justify-content: center;">Go to Doctor Dashboard</a>
+                        <a href="{% url 'doctor_dashboard' %}" class="btn-primary util-jc-center" >Go to Doctor Dashboard</a>
                     {% endif %}
-                    <a href="{% url 'logout' %}" class="btn-secondary" style="justify-content: center;">Logout</a>
+                    <a href="{% url 'logout' %}" class="btn-secondary util-jc-center" >Logout</a>
                 {% else %}
-                    <a href="{% url 'book_appointment' %}" class="btn-primary" style="justify-content: center; background-color: var(--success); border-color: var(--success);">Book Appointment</a>
-                    <a href="{% url 'login' %}" class="btn-primary" style="justify-content: center;">Doctor Login</a>
-                    <a href="{% url 'admin_login' %}" class="btn-secondary" style="justify-content: center;">Admin Login</a>
+                    <a href="{% url 'book_appointment' %}" class="btn-primary util-jc-center-bc-varsuccess-bc-var918" >Book Appointment</a>
+                    <a href="{% url 'login' %}" class="btn-primary util-jc-center" >Doctor Login</a>
+                    <a href="{% url 'admin_login' %}" class="btn-secondary util-jc-center" >Admin Login</a>
                 {% endif %}
             </div>
         </div>

@@ -11,7 +11,7 @@
 
 {% if unassigned_appointments %}
 <div class="form-section-title">Available Unassigned Appointments</div>
-<div class="table-responsive" style="margin-bottom: 3rem;">
+<div class="table-responsive util-mb-3rem" >
     <table class="data-table">
         <thead>
             <tr>
@@ -27,12 +27,12 @@
             <tr>
                 <td>{{ appt.patient_name }}</td>
                 <td>{{ appt.age }} / {{ appt.gender }}</td>
-                <td>{{ appt.date }}<br><span style="color: var(--text-muted); font-size: 0.85rem;">{{ appt.time }}</span></td>
+                <td>{{ appt.date }}<br><span  class="util-col-vartextmuted-fs-085rem">{{ appt.time }}</span></td>
                 <td>{{ appt.reason }}</td>
                 <td>
                     <form method="POST" action="{% url 'doctor_accept_appointment' appt.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Accept</button>
+                        <button type="submit" class="btn-primary util-pad-025rem05rem-fs-075rem" >Accept</button>
                     </form>
                 </td>
             </tr>
@@ -64,32 +64,32 @@
                 <td>{{ appt.time }}</td>
                 <td>{{ appt.reason }}</td>
                 <td>
-                    <span style="padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; background-color: {% if appt.status == 'Pending' %}var(--warning){% elif appt.status == 'Completed' %}var(--success){% else %}var(--danger){% endif %}; color: white;">
+                    <span class="status-badge {% if appt.status == 'Pending' %}status-pending{% elif appt.status == 'Completed' %}status-completed{% else %}status-rejected{% endif %}">
                         {{ appt.status }}
                     </span>
                 </td>
                 <td>
                     {% if appt.status == 'Pending' %}
-                    <div style="display: flex; gap: 0.5rem;">
+                    <div  class="util-dis-flex-gap-05rem">
                         <form method="POST" action="{% url 'doctor_complete_appointment' appt.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Complete</button>
+                            <button type="submit" class="btn-primary util-pad-025rem05rem-fs-075rem" >Complete</button>
                         </form>
                         <form method="POST" action="{% url 'doctor_reject_appointment' appt.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Reject</button>
+                            <button type="submit" class="btn-danger util-pad-025rem05rem-fs-075rem" >Reject</button>
                         </form>
                     </div>
                     {% elif appt.status == 'Rejected' %}
-                        <span style="color: var(--text-muted); font-size: 0.85rem;">Rejected</span>
+                        <span  class="util-col-vartextmuted-fs-085rem">Rejected</span>
                     {% elif appt.status == 'Completed' %}
-                        <span style="color: var(--text-muted); font-size: 0.85rem;">Completed</span>
+                        <span  class="util-col-vartextmuted-fs-085rem">Completed</span>
                     {% endif %}
                 </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="5" style="text-align: center; color: var(--text-muted);">No recent appointments.</td>
+                <td colspan="5"  class="util-ta-center-col-vartextmuted">No recent appointments.</td>
             </tr>
             {% endfor %}
         </tbody>

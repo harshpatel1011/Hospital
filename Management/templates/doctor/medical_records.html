@@ -10,7 +10,7 @@
     <a href="{% url 'doctor_patients' %}" class="back-btn">← Back to Patients</a>
 </div>
 
-<div class="profile-card" style="margin-bottom: 3rem;">
+<div class="profile-card util-mb-3rem" >
     <div class="profile-header">
         <div class="profile-avatar">{{ patient.name|make_list|first }}</div>
         <div class="profile-title">
@@ -21,7 +21,7 @@
 </div>
 
 <div class="form-section-title">Record History</div>
-<div class="table-responsive" style="margin-bottom: 3rem;">
+<div class="table-responsive util-mb-3rem" >
     <table class="data-table">
         <thead>
             <tr>
@@ -41,7 +41,7 @@
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4" style="text-align: center; color: var(--text-muted);">No medical records found for this patient.</td>
+                <td colspan="4"  class="util-ta-center-col-vartextmuted">No medical records found for this patient.</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -49,10 +49,10 @@
 </div>
 
 <div class="form-section-title">Add New Record</div>
-<div style="background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 2rem; max-width: 800px;">
+<div  class="util-bc-varbgcard-bor-1pxsolidvarbo786">
     <form method="POST">
         {% csrf_token %}
-        <div class="form-grid" style="grid-template-columns: 1fr;">
+        <div class="form-grid util-gtc-1fr" >
             <div class="form-group">
                 <label class="form-label">Diagnosis</label>
                 <textarea class="form-input" name="diagnosis" rows="3" placeholder="Enter patient diagnosis here..." required></textarea>
@@ -64,7 +64,7 @@
             </div>
         </div>
         
-        <button type="submit" class="btn-primary" style="margin-top: 1rem;"><i class="fas fa-plus"></i> Add Record</button>
+        <button type="submit" class="btn-primary util-mt-1rem" ><i class="fas fa-plus"></i> Add Record</button>
     </form>
 </div>
 {% endblock %}

@@ -7,7 +7,7 @@
         <h1>Patient Details</h1>
         <p>Profile information for {{ patient.name }}</p>
     </div>
-    <div style="display: flex; gap: 1rem;">
+    <div  class="util-dis-flex-gap-1rem">
         <a href="{% url 'admin_edit_patient' patient.id %}" class="btn-primary">
             <i class="fas fa-edit"></i> Edit
         </a>
@@ -15,24 +15,24 @@
     </div>
 </div>
 
-<div class="auth-card" style="margin: 0; max-width: 800px; margin-bottom: 2rem;">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+<div class="auth-card util-mar-0-mw-800px-mb-2rem" >
+    <div  class="util-dis-grid-gtc-1fr1fr-gap-2rem">
         <div>
-            <h3 style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Demographics</h3>
-            <p style="margin-bottom: 1rem;"><strong>Name:</strong> {{ patient.name }}</p>
-            <p style="margin-bottom: 1rem;"><strong>Age/Gender:</strong> {{ patient.age }} / {{ patient.gender }}</p>
-            <p style="margin-bottom: 1rem;"><strong>Registered On:</strong> {{ patient.created_at|date:"M d, Y" }}</p>
+            <h3  class="util-mb-15rem-col-vartextmuted-fs-0461">Demographics</h3>
+            <p  class="util-mb-1rem"><strong>Name:</strong> {{ patient.name }}</p>
+            <p  class="util-mb-1rem"><strong>Age/Gender:</strong> {{ patient.age }} / {{ patient.gender }}</p>
+            <p  class="util-mb-1rem"><strong>Registered On:</strong> {{ patient.created_at|date:"M d, Y" }}</p>
         </div>
         
         <div>
-            <h3 style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Contact & Care</h3>
-            <p style="margin-bottom: 1rem;"><strong>Phone:</strong> {{ patient.phone }}</p>
-            <p style="margin-bottom: 1rem;"><strong>Address:</strong> {{ patient.address }}</p>
-            <p style="margin-bottom: 1rem;"><strong>Assigned Doctor:</strong> 
+            <h3  class="util-mb-15rem-col-vartextmuted-fs-0461">Contact & Care</h3>
+            <p  class="util-mb-1rem"><strong>Phone:</strong> {{ patient.phone }}</p>
+            <p  class="util-mb-1rem"><strong>Address:</strong> {{ patient.address }}</p>
+            <p  class="util-mb-1rem"><strong>Assigned Doctor:</strong> 
                 {% if patient.added_by %}
-                    <span style="color: var(--primary); font-weight: 600;">Dr. {{ patient.added_by.username }}</span>
+                    <span  class="util-col-varprimary-fw-600">Dr. {{ patient.added_by.username }}</span>
                 {% else %}
-                    <span style="color: var(--text-muted);">Unassigned</span>
+                    <span  class="util-col-vartextmuted">Unassigned</span>
                 {% endif %}
             </p>
         </div>

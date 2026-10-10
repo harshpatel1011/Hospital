@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="auth-container">
-        <div class="auth-card" style="max-width: 600px;">
+        <div class="auth-card util-mw-600px" >
             <div class="page-header">
                 <div class="header-text">
                     <h1>Apollo</h1>
@@ -13,24 +13,20 @@
             </div>
 
             {% if messages %}
-                <div style="margin-bottom: 1rem;">
-                    {% for message in messages %}
-                        <div style="padding: 0.75rem; border-radius: var(--border-radius-sm); margin-bottom: 0.5rem; background: {% if message.tags == 'error' %}#fee2e2{% else %}#d1e7dd{% endif %}; color: {% if message.tags == 'error' %}var(--danger){% else %}#0f5132{% endif %}; border: 1px solid {% if message.tags == 'error' %}#fca5a5{% else %}#badbcc{% endif %};">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
+                <div  class="util-mb-1rem">
+                    {% include 'includes/messages.html' %}
                 </div>
             {% endif %}
 
             <form method="POST">
                 {% csrf_token %}
-                <div class="form-grid" style="grid-template-columns: repeat(2, 1fr);">
-                    <div class="form-group" style="grid-column: span 2;">
+                <div class="form-grid util-gtc-repeat21fr" >
+                    <div class="form-group util-gc-span2" >
                         <label class="form-label">Username</label>
                         <input class="form-input" type="text" name="username" placeholder="Choose a username" required>
                     </div>
                     
-                    <div class="form-group" style="grid-column: span 2;">
+                    <div class="form-group util-gc-span2" >
                         <label class="form-label">Email</label>
                         <input class="form-input" type="email" name="email" placeholder="your.email@example.com" required>
                     </div>
@@ -56,12 +52,12 @@
                     </div>
                 </div>
                 
-                <button type="submit" class="btn-primary" style="margin-top: 1rem;">Apply</button>
+                <button type="submit" class="btn-primary util-mt-1rem" >Apply</button>
             </form>
             
             <div class="auth-footer">
-                <p style="margin-top: 0.5rem;">Already have an account? <a href="{% url 'login' %}">Login</a></p>
-                <p style="margin-top: 0.5rem;"><a href="{% url 'home' %}">← Back to Home</a></p>
+                <p  class="util-mt-05rem">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+                <p  class="util-mt-05rem"><a href="{% url 'home' %}">← Back to Home</a></p>
             </div>
         </div>
     </div>

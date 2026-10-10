@@ -7,7 +7,7 @@
         <h1>Staff Details</h1>
         <p>Profile information for {{ staff_member.name }}</p>
     </div>
-    <div style="display: flex; gap: 1rem;">
+    <div  class="util-dis-flex-gap-1rem">
         <a href="{% url 'admin_edit_staff' staff_member.id %}" class="btn-primary">
             <i class="fas fa-edit"></i> Edit
         </a>
@@ -15,18 +15,18 @@
     </div>
 </div>
 
-<div class="auth-card" style="margin: 0; max-width: 800px; margin-bottom: 2rem;">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+<div class="auth-card util-mar-0-mw-800px-mb-2rem" >
+    <div  class="util-dis-grid-gtc-1fr1fr-gap-2rem">
         <div>
-            <h3 style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Professional Details</h3>
-            <p style="margin-bottom: 1rem;"><strong>Name:</strong> {{ staff_member.name }}</p>
-            <p style="margin-bottom: 1rem;"><strong>Role Title:</strong> {{ staff_member.role_title }}</p>
+            <h3  class="util-mb-15rem-col-vartextmuted-fs-0461">Professional Details</h3>
+            <p  class="util-mb-1rem"><strong>Name:</strong> {{ staff_member.name }}</p>
+            <p  class="util-mb-1rem"><strong>Role Title:</strong> {{ staff_member.role_title }}</p>
         </div>
         
         <div>
-            <h3 style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Contact Info</h3>
-            <p style="margin-bottom: 1rem;"><strong>Phone:</strong> {{ staff_member.phone }}</p>
-            <p style="margin-bottom: 1rem;"><strong>Email:</strong> <a href="mailto:{{ staff_member.email }}" style="color: var(--primary);">{{ staff_member.email }}</a></p>
+            <h3  class="util-mb-15rem-col-vartextmuted-fs-0461">Contact Info</h3>
+            <p  class="util-mb-1rem"><strong>Phone:</strong> {{ staff_member.phone }}</p>
+            <p  class="util-mb-1rem"><strong>Email:</strong> <a href="mailto:{{ staff_member.email }}"  class="util-col-varprimary">{{ staff_member.email }}</a></p>
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@
     <a href="{% url 'doctor_patients' %}" class="back-btn">← Back</a>
 </div>
 
-<div style="background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 2rem; max-width: 800px;">
+<div  class="util-bc-varbgcard-bor-1pxsolidvarbo786">
     <form method="POST">
         {% csrf_token %}
         <div class="form-grid">
@@ -31,20 +31,20 @@
 
             <div class="form-group">
                 <label class="form-label">Gender</label>
-                <select class="form-input" name="gender" required style="appearance: auto; background-color: white;">
+                <select class="form-input util-app-auto-bc-white" name="gender" required >
                     <option value="Male" {% if patient.gender == 'Male' %}selected{% endif %}>Male</option>
                     <option value="Female" {% if patient.gender == 'Female' %}selected{% endif %}>Female</option>
                     <option value="Other" {% if patient.gender == 'Other' %}selected{% endif %}>Other</option>
                 </select>
             </div>
 
-            <div class="form-group" style="grid-column: 1 / -1;">
+            <div class="form-group util-gc-11" >
                 <label class="form-label">Address</label>
                 <textarea class="form-input" name="address" rows="3" required>{{ patient.address }}</textarea>
             </div>
         </div>
         
-        <button type="submit" class="btn-primary" style="margin-top: 1rem;">Update Patient</button>
+        <button type="submit" class="btn-primary util-mt-1rem" >Update Patient</button>
     </form>
 </div>
 {% endblock %}

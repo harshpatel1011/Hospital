@@ -33,17 +33,17 @@
                 <td>{{ doc.phone }}</td>
                 <td>
                     {% if doc.is_approved %}
-                    <span style="color: var(--success); font-weight: 600;">Approved</span>
+                    <span  class="util-col-varsuccess-fw-600">Approved</span>
                     {% else %}
-                    <span style="color: var(--warning); font-weight: 600;">Pending</span>
+                    <span  class="util-col-varwarning-fw-600">Pending</span>
                     {% endif %}
                 </td>
                 <td>
-                    <div style="display: flex; gap: 0.5rem;">
+                    <div  class="util-dis-flex-gap-05rem">
                         <a href="{% url 'admin_view_doctor' doc.id %}" class="dossier-btn" title="View"><i class="fas fa-eye"></i></a>
                         <a href="{% url 'admin_edit_doctor' doc.id %}" class="dossier-btn" title="Edit"><i class="fas fa-edit"></i></a>
                         
-                        <form method="POST" action="{% url 'admin_delete_doctor' doc.id %}" onsubmit="return confirm('Are you sure you want to delete Doctor {{ doc.username }}? This cannot be undone.');" style="display: inline;">
+                        <form method="POST" action="{% url 'admin_delete_doctor' doc.id %}" onsubmit="return confirm('Are you sure you want to delete Doctor {{ doc.username }}? This cannot be undone.');"  class="util-dis-inline">
                             {% csrf_token %}
                             <button type="submit" class="dossier-btn danger" title="Delete"><i class="fas fa-trash"></i></button>
                         </form>
@@ -56,7 +56,7 @@
             </tr>
             {% empty %}
             <tr>
-                <td colspan="6" style="text-align: center; color: var(--text-muted);">No doctors registered yet.</td>
+                <td colspan="6"  class="util-ta-center-col-vartextmuted">No doctors registered yet.</td>
             </tr>
             {% endfor %}
         </tbody>
